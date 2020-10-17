@@ -1,20 +1,24 @@
-import { ServerComponent } from './server/server.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ServersComponent } from './servers/servers.component';
+import { Routes, RouterModule } from '@angular/router';
+import { PhoneVerificationComponent } from './auth/phone-verification/phone-verification.component';
+
+const appRoutes: Routes = [
+  { path: '', component: PhoneVerificationComponent },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ServerComponent,
-    ServersComponent
+    PhoneVerificationComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
