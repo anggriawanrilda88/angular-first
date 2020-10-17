@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../service/auth.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-phone-verification',
@@ -7,13 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhoneVerificationComponent implements OnInit {
   phone = '';
-  constructor() { }
+  code = '';
+
+  products = [];
+  constructor(private dataService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  SendOtp() {
-    alert("sdfsdf");
+  SendOtp(type) {
+    this.dataService.PhoneVerificationReq(this.phone, type).subscribe((data: any[]) => {
+      console.log(data);
+      this.products = data;
+    });
   }
 
 }

@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">+62</div>
-                        <input type="text" class="form-control" placeholder="Masukkan Nomor Handphone">
+                        <input type="text" [(ngModel)]="phone" name="phone" class="form-control" placeholder="Masukkan Nomor Handphone">
                     </div>
                 </div>
             </div>
@@ -24,9 +24,10 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <button class="btn btn-warning" (click)="SendOtp()"><i class="fa fa-mail"></i>SMS</button>&nbsp;
-                            <button class="btn btn-success"><i class="fa fa-mail"></i>Whatsapp</button>
+                            <button class="btn btn-warning" (click)="SendOtp('sms')"><i class="fa fa-mail"></i>SMS</button>&nbsp;
+                            <button class="btn btn-success" (click)="SendOtp('wa')"><i class="fa fa-mail"></i>Whatsapp</button>
                         </div>
+                        <pre *ngIf="code"> {{(result$|async)|json}} </pre>
                     </div>
                 </div>
             </div>
