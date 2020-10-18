@@ -9,28 +9,39 @@
     <br>
     <form class="form-inline phone-check">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">+62</div>
-                        <input type="text" [(ngModel)]="phone" name="phone" class="form-control" placeholder="Masukkan Nomor Handphone">
+            <div class="col-12">
+                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">+62</div>
                     </div>
+                    <input type="text" [(ngModel)]="phone" class="form-control" name="phone" placeholder="Masukkan Nomor Handphone">
                 </div>
             </div>
             <br>
             <br>
             <br>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <button class="btn btn-warning" (click)="SendOtp('sms')"><i class="fa fa-mail"></i>SMS</button>&nbsp;
-                            <button class="btn btn-success" (click)="SendOtp('wa')"><i class="fa fa-mail"></i>Whatsapp</button>
-                        </div>
-                        <pre *ngIf="code"> {{(result$|async)|json}} </pre>
-                    </div>
+            <div class="col-12">
+                <div class="input-group mb-2">
+                    <button class="btn btn-warning" (click)="SendOtp('sms', content)"><fa-icon [icon]="faEnvelope"></fa-icon>&nbsp;&nbsp;SMS</button>&nbsp;
+                    <button class="btn btn-success" (click)="SendOtp('wa', content)"><fa-icon [icon]="faPhone"></fa-icon>&nbsp;&nbsp;Whatsapp</button>
                 </div>
+                <pre *ngIf="code"> {{(result$|async)|json}} </pre>
             </div>
         </div>
     </form>
 </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Error Message</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-danger" role="alert">
+            {{errorMessage}}
+        </div>
+    </div>
+</ng-template>

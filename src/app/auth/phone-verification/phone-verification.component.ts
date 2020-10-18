@@ -1,6 +1,7 @@
 import { AuthService } from './../../service/auth.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { faFilm, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-phone-verification',
@@ -10,17 +11,40 @@ import { Observable } from 'rxjs';
 export class PhoneVerificationComponent implements OnInit {
   phone = '';
   code = '';
+  closeResult = '';
+  faEnvelope = faEnvelope;
+  faPhone = faPhone;
+  errorMessage = 'Terjadi Kesalahan Pengecekan';
 
-  products = [];
-  constructor(private dataService: AuthService) { }
+  constructor(private dataService: AuthService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
 
-  SendOtp(type) {
-    this.dataService.PhoneVerificationReq(this.phone, type).subscribe((data: any[]) => {
-      console.log(data);
-      this.products = data;
+  //* open modal function
+  open(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  SendOtp(type, content) {
+    this.dataService.PhoneVerificationReq(this.phone, type).subscribe((data: any) => {
+    }, (err) => {
+      this.errorMessage = err.error.Message;
+      this.open(content);
     });
   }
 
