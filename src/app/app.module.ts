@@ -9,16 +9,19 @@ import { Routes, RouterModule } from '@angular/router';
 import { PhoneVerificationComponent } from './auth/phone-verification/phone-verification.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OtpVerificationComponent } from './auth/otp-verification/otp-verification.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: PhoneVerificationComponent },
+  { path: 'otp-verification', component: OtpVerificationComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     PhoneVerificationComponent,
+    OtpVerificationComponent,
   ],
   imports: [
     BrowserModule,

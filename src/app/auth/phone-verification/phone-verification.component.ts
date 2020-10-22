@@ -2,6 +2,7 @@ import { AuthService } from './../../service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { faFilm, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-phone-verification',
@@ -16,7 +17,7 @@ export class PhoneVerificationComponent implements OnInit {
   faPhone = faPhone;
   errorMessage = 'Terjadi Kesalahan Pengecekan';
 
-  constructor(private dataService: AuthService, private modalService: NgbModal) { }
+  constructor(private dataService: AuthService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -42,6 +43,8 @@ export class PhoneVerificationComponent implements OnInit {
 
   SendOtp(type, content) {
     this.dataService.PhoneVerificationReq(this.phone, type).subscribe((data: any) => {
+      // this.router.navigate(['otp-verification']);
+      console.log(data)
     }, (err) => {
       this.errorMessage = err.error.Message;
       this.open(content);
