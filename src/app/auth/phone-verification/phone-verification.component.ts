@@ -43,8 +43,8 @@ export class PhoneVerificationComponent implements OnInit {
 
   SendOtp(type, content) {
     this.dataService.PhoneVerificationReq(this.phone, type).subscribe((data: any) => {
-      // this.router.navigate(['otp-verification']);
-      console.log(data)
+      this.router.navigate(['otp-verification']);
+      // console.log(data)
     }, (err) => {
       this.errorMessage = err.error.Message;
       this.open(content);
