@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { faFilm, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie';
 
 @Component({
   selector: 'app-phone-verification',
@@ -17,13 +18,18 @@ export class PhoneVerificationComponent implements OnInit {
   faPhone = faPhone;
   errorMessage = 'Terjadi Kesalahan Pengecekan';
 
-  constructor(private dataService: AuthService, private modalService: NgbModal, private router: Router) { }
+  constructor(
+    private dataService: AuthService,
+    private modalService: NgbModal,
+    private router: Router,
+    private cookieService: CookieService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  //* open modal function
-  open(content) {
+  // open modal function
+  open(content): void {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -41,9 +47,10 @@ export class PhoneVerificationComponent implements OnInit {
     }
   }
 
-  SendOtp(type, content) {
-    this.dataService.PhoneVerificationReq(this.phone, type).subscribe((data: any) => {
-      this.router.navigate(['otp-verification']);
+  SendOtp(type, content): void {
+    this.dataService.PhoneVerification(this.phone, type).subscribe((data: any) => {
+      this.cookieService.put('phone', this.phone);
+      this.router.navigateByUrl('otp-verification');
       // console.log(data)
     }, (err) => {
       this.errorMessage = err.error.Message;

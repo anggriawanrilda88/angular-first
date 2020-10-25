@@ -1,0 +1,33 @@
+.vr-bold {
+    font-size: 25px;
+    text-align: center;
+}
+
+.phone-check {
+    margin: 30px 0 0 0;
+}
+
+.prefix {
+    margin: 2px 0 0 0;
+}
+
+.input-group-prepend {
+    width: 20% !important;
+}
+
+.input-group-prepend .input-group-text {
+    width: 100% !important;
+}
+
+input[name="phone"] {
+    width: 80% !important;
+}
+
+input[name="phone"]::a {
+    content: "+62";
+    height: 50px;
+    width: 50px;
+    background: red;
+    margin: 50px 0 0 0;
+    position: absolute;
+}

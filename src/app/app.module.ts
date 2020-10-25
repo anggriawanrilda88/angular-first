@@ -10,7 +10,7 @@ import { PhoneVerificationComponent } from './auth/phone-verification/phone-veri
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OtpVerificationComponent } from './auth/otp-verification/otp-verification.component';
-
+import { CookieModule } from 'ngx-cookie';
 
 const appRoutes: Routes = [
   { path: '', component: PhoneVerificationComponent },
@@ -29,7 +29,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     FontAwesomeModule,
-    NgbModule
+    NgbModule,
+    CookieModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
