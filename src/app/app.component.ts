@@ -24,4 +24,8 @@ export class AppComponent {
     });
   }
 
+  addChanges(): void {
+    this.serverElements[0].name = 'Changed!!';
+  }
+
 }
