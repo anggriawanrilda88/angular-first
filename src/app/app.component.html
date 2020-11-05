@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <app-cockpit (serverCreated)="onServerAdded($event)" (blueprintCreated)="onBlueprintAdded($event)"></app-cockpit>
     <hr>
     <div class="row">
@@ -12,4 +12,11 @@
             </app-server-element>
         </div>
     </div>
+</div> -->
+<button (click)="startGame()">Start Game</button>
+<div *ngFor="let game of games; let i = index" [attr.data-index]="i">
+    {{game.name}}
 </div>
+<!-- <app-game-control></app-game-control> -->
+<!-- <app-even [name]="name"></app-even>
+<app-odd></app-odd> -->
