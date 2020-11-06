@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private REST_API_SERVER = 'http://192.168.1.222:7001';
+  private REST_API_SERVER = 'http://192.168.56.222:7001';
 
   constructor(private httpClient: HttpClient) { }
 
